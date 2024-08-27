@@ -135,3 +135,73 @@ let str1 = "Hello";
 let str2 = "World";
 let concatStr = str1.concat(", ", str2, "!");
 // console.log(concatStr);
+
+// -- trim -> menghapus spasi di awal dan akhir string
+let strWithSpaces = "     Hello, World!     ";
+let trimmedStr = strWithSpaces.trim();
+// console.log(trimmedStr);
+
+// --- Builtin Method (Number)
+let number = 123.456;
+
+// toFixed -> membulatkan angka ke jumlah desimal dan mengembalikan string
+let roundedNumber = number.toFixed(2);
+// let parsedRoundedNumber = parseInt(roundedNumber); // -> mengembalikan string menjadi number semula, dan menghilangkan desimal
+// console.log(typeof parsedRoundedNumber);
+// console.log(parsedRoundedNumber);
+let convertedNumber = Number(roundedNumber); // -> konversi string ke number tanpa menghilangkan desimal
+// console.log(convertedNumber);
+
+// toString/String -> mengembalikan string, tanpa harus membulatkan angka ke jumlah desimal
+// let numberAsString = number.toString();
+let numberAsString = String(number);
+// console.log(numberAsString);
+
+// --- Builtin Method (Date)
+let currentDate = new Date();
+// console.log(currentDate);
+let convertString = String(currentDate); // -> untuk mencetak tanggal dan tempat yang sesuai
+// console.log(convertString);
+
+// getFullYear() -> mengambil tahun
+let year = currentDate.getFullYear();
+// console.log(year);
+
+// getMonth() -> mengambil bulan
+let month = currentDate.getMonth();
+// console.log(month);
+
+// getDate() -> mengambil tanggal dalam hari
+let date = currentDate.getDate();
+// console.log(date);
+
+// getDay() -> mengambil hari dalam minggu (0 = Minggu, 6 = Sabtu)
+let dayOfWeek = currentDate.getDay();
+// console.log(dayOfWeek);
+
+// --- Gerbang Logika
+
+// -- gerbang AND (&&)
+// false + false = false
+// false + true = false
+// true + false = false
+// true + true = true
+
+// -- gerbang OR (||)
+// false + false = false
+// false + true = true
+// true + false = true
+// true + true = true
+
+// -- gerbang NOT (!)
+// false = true
+// true = false
+
+let statement1 = 10 < 19;
+let statement2 = 30 != "30";
+let statement3 = 2 > 5;
+let statement4 = 30 === "30";
+
+// console.log(statement1 && statement4);
+// console.log(statement3 || statement2);
+// console.log(!statement4 && statement2);
