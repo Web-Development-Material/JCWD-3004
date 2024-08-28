@@ -109,4 +109,126 @@ let checkShift =
     : shift >= 15 && shift < 21
     ? "Noon Shift"
     : "Night Shift";
-console.log(checkShift);
+// console.log(checkShift);
+
+// -- For Loop Statement
+
+// for (let i = 0; i > -10; i--) {
+//   console.log(i);
+// }
+
+let totalStep = 0;
+
+// for (let day = 1; day <= 7; day++) {
+//   let stepsToday = 5000 + day * 1000;
+//   console.log("Steps on day " + day + " : " + stepsToday);
+//   totalStep += stepsToday;
+// }
+
+// console.log("Total steps in a week : " + totalStep);
+// console.log("Average steps in a week : " + totalStep / 7);
+
+// -- Nested For Loop Statement
+// case 1 :
+// let daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+// let subjects = ["Math", "English", "Science"];
+
+// for (let i = 0; i < daysOfWeek.length; i++) {
+//   console.log("Schedule for " + daysOfWeek[i] + " : ");
+//   if (daysOfWeek[i] === "Monday") {
+//     console.log("Monday is a bad day");
+//   }
+//   for (let j = 0; j < subjects.length; j++) {
+//     console.log(" " + subjects[j]);
+//   }
+// }
+
+// case 2 :
+// for (let i = 0; i < 5; i++) {
+//   console.log("Main Number : ", i);
+//   for (let j = 0; j < 2; j++) {
+//     console.log(" --- Sub Number : ", j);
+//     if (j % 2 == 0) {
+//       console.log(" -------- ", j, " -> even number");
+//     }
+//   }
+// }
+
+// case 3 :
+// let randomNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// for (let i = 0; i < randomNumber.length; i++) {
+//   let generateNumber = Math.random() * 10;
+//   if (randomNumber[i] == Math.floor(generateNumber)) {
+//     console.log(randomNumber[i] + " match with " + Math.floor(generateNumber));
+//   } else {
+//     console.log(
+//       randomNumber[i] + " not matched with " + Math.floor(generateNumber)
+//     );
+//   }
+// }
+
+// --- While Loop Statement
+let savings = 0;
+let month = 1;
+
+// while (month <= 13) {
+//   savings += 100;
+//   console.log("Savings after month " + month + " : " + savings);
+//   month++;
+//   if (month == 10) {
+//     console.log("Out of range");
+//     break;
+//   }
+// }
+
+// --- Nested While Loop Statement
+// let i = 1;
+// while (i <= 5) {
+//   let j = 1;
+//   while (j <= 5) {
+//     if ((i * j) % 2 == 0) {
+//       console.log(
+//         i + " x " + j + " = " + i * j + ", this result is even number"
+//       );
+//     } else {
+//       console.log(i + " x " + j + " = " + i * j);
+//     }
+//     j++;
+//   }
+//   i++;
+// }
+
+// --- Do While Loop Statement
+let basketCapacity = 5;
+let fruitsPicked = 0;
+
+// do {
+//   fruitsPicked++;
+//   console.log("Picked fruit number : " + fruitsPicked);
+// } while (fruitsPicked < basketCapacity);
+
+// --- Do While Nested Loop Statement
+let rows = 10;
+let stars;
+
+do {
+  stars = 1;
+  do {
+    process.stdout.write("*");
+    stars++;
+  } while (stars <= rows);
+  console.log();
+  rows--;
+} while (rows > 0);
+
+// -- versi kebaliknya
+// do {
+//   stars = 10;
+//   do {
+//     process.stdout.write("*");
+//     stars--;
+//   } while (stars >= rows);
+//   console.log();
+//   rows--;
+// } while (rows > 0);
