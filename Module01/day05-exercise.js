@@ -35,13 +35,13 @@ function sumOfDuplicates(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (seen[arr[i]]) {
       seen[arr[i]]++;
-      console.log(seen);
+      // console.log(seen);
     } else {
       seen[arr[i]] = 1;
     }
   }
   for (let key in seen) {
-    // console.log(key);
+    console.log(key + " muncul " + seen[key] + " kali ");
     if (seen[key] > 1) {
       sum += Number(key) * seen[key];
     }
