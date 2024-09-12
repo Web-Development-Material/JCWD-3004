@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Amoxicillin",
+      "category": "Antibiotik",
+      "description": "Amoxicillin digunakan untuk mengobati berbagai jenis infeksi bakteri"
+    },
+    {
+      "id": 2,
+      "name": "Ibuprofen",
+      "category": "Anti-inflamasi",
+      "description": "Ibuprofen digunakan untuk mengurangi rasa sakit, peradangan, dan demam"
+    },
+    {
+      "id": 3,
+      "name": "Cetirizine",
+      "category": "Antihistamin",
+      "description": "Cetirizine digunakan untuk mengobati alergi"
+    },
+    {
+      "id": 4,
+      "name": "Lansoprazole",
+      "category": "Antasida",
+      "description": "Lansoprazole digunakan untuk mengobati asam lambung dan GERD"
+    }
+  ]
+}
