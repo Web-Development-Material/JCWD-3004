@@ -196,4 +196,18 @@ enum Status {
   Error = "ERROR",
   Loading = "LOADING",
 }
-console.log(Status);
+// console.log(Status);
+
+// -- type data tuple
+const arrVar5: [string, number, boolean] = ["hello", 123, true];
+const arrVar6: Array<string | number | boolean> = ["hello", 123, true];
+
+// -- array 2 dimensi
+const arrVar7: number[][] = [
+  [1, 2, 3, 4, 5, 6],
+  [1, 2, 3, 4, 5, 6],
+];
+const arrVar8: Array<Array<number>> = [
+  [1, 2, 3, 4, 5, 6],
+  [1, 2, 3, 4, 5, 6],
+];
