@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bakery Landing Page</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">Bakery Delight</div>
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <h1>Welcome to Bakery Delight</h1>
+        <p>Freshly baked goods just for you!</p>
+        <a href="#products" class="cta-btn">See Our Products</a>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://i.pinimg.com/564x/4c/1e/ce/4c1ecea50d659e3ed7125ecab28be503.jpg"
+          alt="Bakery Image"
+        />
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <h2>About Us</h2>
+      <p>
+        We are passionate about bringing the freshest and most delicious baked
+        goods to our community.
+      </p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+      <h2>Our Products</h2>
+      <!-- kita atur pakai grid untuk menampilkan produk bakery nya -->
+      <div class="grid-container">
+        <!-- untuk menampilkan produk bakery nya -->
+        <div class="product-item">
+          <img
+            src="https://i.pinimg.com/564x/c3/70/6e/c3706e4f3c72cf96a68e225887b8b284.jpg"
+            alt="Bread"
+          />
+          <h3>Fresh Bread</h3>
+        </div>
+        <div class="product-item">
+          <img
+            src="https://i.pinimg.com/564x/53/ff/e2/53ffe2ce6d416ba5dd9492580c4e8251.jpg"
+            alt="Cake"
+          />
+          <h3>Delicious Cakes</h3>
+        </div>
+        <div class="product-item">
+          <img
+            src="https://i.pinimg.com/564x/3c/67/61/3c6761ea665d3f61bbcbbbcc4713885e.jpg"
+            alt="Cookies"
+          />
+          <h3>Homemade Cookies</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <h2>Contact Us</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" />
+        <input type="email" placeholder="Your Email" />
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <p>&copy; 2024 Bakery Delight - All Rights Reserved</p>
+    </footer>
+  </body>
+</html>
