@@ -1,0 +1,117 @@
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: aquamarine;
+    color: white
+}
+
+.sub-container-1 {
+    width: 50%;
+    height: 100%;
+    margin: 15px;
+    background-color: rgb(164, 164, 255);
+}
+
+.sub-container-2 {
+    width: 100%;
+    height: 100%;
+    margin: 15px;
+    color: brown;
+    background-color: blanchedalmond;
+}
+
+.item-2 {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin:15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: burlywood;
+}
+
+.item-1 {
+    width: 300px;
+    height: 50px;
+    background-color: rgb(41, 109, 205);
+    margin: 7px;
+}
+
+/* ukuran extra small devices */
+@media only screen and (max-width: 600px) {
+    .item-1 {
+        width: 300px;
+        height: 50px;
+        background-color: rgb(45, 235, 80);
+        margin: 7px;
+    }
+    .sub-container-2 {
+        width: 100%;
+        height: 100%;
+        margin: 15px;
+        color: brown;
+        background-color: blanchedalmond;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* ukuran small devices */
+@media only screen and (min-width: 600px) {
+    .item-1 {
+        width: 300px;
+        height: 50px;
+        background-color: rgb(250, 247, 22);
+        margin: 7px;
+    }
+    .sub-container-2 {
+        width: 100%;
+        height: 100%;
+        margin: 15px;
+        color: brown;
+        background-color: blanchedalmond;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ukuran medium devices */
+@media only screen and (min-width: 768px) {
+    .item-1 {
+        width: 300px;
+        height: 50px;
+        background-color: rgb(250, 144, 22);
+        margin: 7px;
+    }
+    .sub-container-2 {
+        width: 100%;
+        height: 100%;
+        margin: 15px;
+        color: brown;
+        background-color: blanchedalmond;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+
+/* ukuran large devices */
+@media only screen and (min-width: 992px) {
+    .item-1 {
+        width: 300px;
+        height: 50px;
+        background-color: rgb(250, 22, 235);
+        margin: 7px;
+    }
+    .sub-container-2 {
+        width: 100%;
+        height: 100%;
+        margin: 15px;
+        color: brown;
+        background-color: blanchedalmond;
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+    }
+}

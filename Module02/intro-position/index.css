@@ -1,0 +1,88 @@
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.box {
+    width: 200px;
+    height: 100px;
+    background-color: brown;
+    color: brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding:10px;
+    border-radius:5px;
+    font-size: 16px;
+}
+
+/* static adalah posisi default elemen */
+.static-position {
+    position: static;
+    left:80px; /* tidak ada efeknya */
+    background-color: blanchedalmond;
+}
+
+/* relative berarti elemen diposisikan relatif terhadap posisinya sendiri */
+.relative-position {
+    position: relative;
+    top: 20px;
+    left: 80px; /* baru kena efek */
+    background-color: blanchedalmond;
+}
+
+/* absolute berarti elemen diposisikan absolut terhadap elemen parent dengan posisi relatif*/
+.container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: rgb(211, 203, 114);
+    margin-bottom: 30px;
+    border-radius:10px
+}
+
+.absolute-position {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    margin: 100px;
+    background-color: brown;
+    color: white
+}
+
+/* fixed berarti elemen akan tetap berada di posisi yang sama saat halaman di scroll */
+.fixed-position {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: darkgoldenrod;
+    color: white
+}
+
+/* sticky berarti elemen akan mengikuti posisi scroll hingga mencapai jarak yang ditentukan */
+.sticky-position {
+    position: sticky;
+    top: 0;
+    background-color: blanchedalmond;
+}
+
+.content {
+    height: 1000px;
+    background-color: brown;
+}
+
+/* z-index untuk mengatur tumpukan elemen */
+.z-index-box {
+    position: relative;
+    z-index: 1;
+    background-color: rgb(103, 103, 255);
+    top: -50px;
+}
+
+.overlapping-box {
+    position: relative;
+    z-index: 2;
+    background-color:aquamarine ;
+    top: -100px;
+}

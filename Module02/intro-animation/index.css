@@ -1,0 +1,79 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: blanchedalmond;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.box  {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    background-color: coral;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+/* keyframe untuk memudarkan elemen dari transparan menjadi solid */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 2s ease-in-out infinite
+}
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(-100%)
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.slide-left {
+    animation: slideLeft 1.5s ease-out infinite
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px)
+    }
+}
+
+.bounce {
+    animation: bounce 1s ease infinite
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.rotate {
+    animation: rotate 2s linear infinite;
+}
