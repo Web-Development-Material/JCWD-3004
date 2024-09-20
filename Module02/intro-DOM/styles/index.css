@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: blanchedalmond;
+}
+
+.example {
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 20px;
+    background-color: brown;
+    color: white;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: rgb(94, 24, 24);
+}
