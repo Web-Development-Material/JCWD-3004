@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "image": "https://i.pinimg.com/564x/72/1b/7a/721b7ace987f64cab82d511b7837a8cc.jpg",
+    "title": "Apple iPhone 13",
+    "description": "Apple iPhone 13 with A15 Bionic chip, 6.1-inch Super Retina XDR display, 128GB storage, and dual 12MP camera system.",
+    "price": 799
+  },
+  {
+    "id": 2,
+    "image": "https://i.pinimg.com/564x/ac/e4/83/ace48301ca346632f8ec4c3e3eceb8d1.jpg",
+    "title": "Samsung Galaxy S21",
+    "description": "Samsung Galaxy S21 with Exynos 2100 processor, 6.2-inch Dynamic AMOLED 2X, 128GB storage, and triple 64MP camera.",
+    "price": 749
+  },
+  {
+    "id": 3,
+    "image": "https://i.pinimg.com/564x/20/61/76/206176c976d51413763c84956ee91d80.jpg",
+    "title": "OnePlus 9",
+    "description": "OnePlus 9 powered by Snapdragon 888, 6.55-inch Fluid AMOLED display, 128GB storage, and 48MP Hasselblad camera.",
+    "price": 729
+  },
+  {
+    "id": 4,
+    "image": "https://i.pinimg.com/564x/c6/66/3f/c6663f23ed79cf8e1291a154af2511ce.jpg",
+    "title": "Xiaomi Mi 11",
+    "description": "Xiaomi Mi 11 featuring Snapdragon 888, 6.81-inch AMOLED display, 128GB storage, and 108MP primary camera.",
+    "price": 699
+  },
+  {
+    "id": 5,
+    "image": "https://i.pinimg.com/564x/62/f9/36/62f9361e7456334d7494bf4709a9f610.jpg",
+    "title": "Google Pixel 6",
+    "description": "Google Pixel 6 with Google Tensor chip, 6.4-inch OLED display, 128GB storage, and 50MP dual rear camera system.",
+    "price": 599
+  },
+  {
+    "id": 6,
+    "image": "https://i.pinimg.com/564x/c6/26/b9/c626b9b11fb289be1fcd1a0841241e0a.jpg",
+    "title": "Huawei P50 Pro",
+    "description": "Huawei P50 Pro with Kirin 9000, 6.6-inch OLED display, 256GB storage, and quad 50MP camera system.",
+    "price": 899
+  },
+  {
+    "id": 7,
+    "image": "https://i.pinimg.com/564x/4e/68/f6/4e68f6e490b95e8225d759b1207c099f.jpg",
+    "title": "Oppo Find X3 Pro",
+    "description": "Oppo Find X3 Pro featuring Snapdragon 888, 6.7-inch AMOLED display, 256GB storage, and 50MP dual rear camera.",
+    "price": 949
+  },
+  {
+    "id": 8,
+    "image": "https://i.pinimg.com/564x/3a/11/de/3a11de44d9185ece4e068abc1f3dd0f1.jpg",
+    "title": "Vivo X70 Pro",
+    "description": "Vivo X70 Pro powered by Exynos 1080, 6.56-inch AMOLED display, 256GB storage, and 50MP quad camera system.",
+    "price": 679
+  },
+  {
+    "id": 9,
+    "image": "https://i.pinimg.com/564x/b4/ac/b3/b4acb39a450df81adbee7c6ad26b6e9d.jpg",
+    "title": "Sony Xperia 1 III",
+    "description": "Sony Xperia 1 III with Snapdragon 888, 6.5-inch OLED 4K display, 256GB storage, and triple 12MP camera with Zeiss optics.",
+    "price": 1
+  },
+  {
+    "id": 10,
+    "image": "https://i.pinimg.com/564x/25/ca/63/25ca6364b5a29ef95b0b5036aa347c15.jpg",
+    "title": "Asus ROG Phone 5",
+    "description": "Asus ROG Phone 5 featuring Snapdragon 888, 6.78-inch AMOLED display, 256GB storage, and 64MP triple rear camera.",
+    "price": 999
+  }
+]
