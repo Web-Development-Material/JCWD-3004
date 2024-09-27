@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
 
 import Example1 from "./pages/example-1";
 import Example2 from "./pages/example-2";
@@ -8,8 +9,14 @@ import Example5 from "./pages/example-5";
 import Example6 from "./pages/example-6";
 import Example7 from "./pages/example-7";
 import Example8 from "./pages/example-8";
+import Register from "./pages/register";
+import Home from "./pages/home";
+import Products from "./pages/products";
+import Cart from "./pages/cart";
 
 function App() {
+  axios.defaults.baseURL = "https://66f65798436827ced976b37a.mockapi.io";
+
   return (
     <BrowserRouter>
       <Routes>
@@ -21,6 +28,10 @@ function App() {
         <Route element={<Example6 />} path="/example-6" />
         <Route element={<Example7 />} path="/example-7" />
         <Route element={<Example8 />} path="/example-8" />
+        <Route element={<Register />} path="/auth/register" />
+        <Route element={<Home />} path="/home" />
+        <Route element={<Products />} path="/products" />
+        <Route element={<Cart />} path="/cart" />
       </Routes>
     </BrowserRouter>
   );
