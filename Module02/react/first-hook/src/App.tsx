@@ -12,10 +12,11 @@ import Example8 from "./pages/example-8";
 import Register from "./pages/register";
 import Home from "./pages/home";
 import Products from "./pages/products";
+import FormProducts from "./pages/form-products";
 import Cart from "./pages/cart";
 
 function App() {
-  axios.defaults.baseURL = "https://66f65798436827ced976b37a.mockapi.io";
+  axios.defaults.baseURL = import.meta.env.VITE_PRODUCT_API;
 
   return (
     <BrowserRouter>
@@ -32,6 +33,7 @@ function App() {
         <Route element={<Home />} path="/home" />
         <Route element={<Products />} path="/products" />
         <Route element={<Cart />} path="/cart" />
+        <Route element={<FormProducts />} path="/form-products" />
       </Routes>
     </BrowserRouter>
   );
