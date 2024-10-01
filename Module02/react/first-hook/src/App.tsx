@@ -15,10 +15,13 @@ import Products from "./pages/products";
 import FormProducts from "./pages/form-products";
 import Cart from "./pages/cart";
 
+import { CartProvider } from "./context/cartContext";
+
 function App() {
   axios.defaults.baseURL = import.meta.env.VITE_PRODUCT_API;
 
   return (
+    <CartProvider>
     <BrowserRouter>
       <Routes>
         <Route element={<Example1 />} path="/" />
@@ -36,6 +39,7 @@ function App() {
         <Route element={<FormProducts />} path="/form-products" />
       </Routes>
     </BrowserRouter>
+    </CartProvider>
   );
 }
 

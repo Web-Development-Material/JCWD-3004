@@ -15,7 +15,7 @@ function FormProducts() {
     formState: { errors },
   } = useForm<ProductData>({ resolver: zodResolver(productSchema) });
   const [image, setImage] = useState<string>("");
-
+ 
   function onImageChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (file) {
