@@ -1,8 +1,12 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Swal from "sweetalert2";
+import { createProducts, Product } from "@/utils/api";
+import { productSchema } from "@/utils/validation/productSchema";
 
-import { getProducts, deleteProducts, Product } from "@/utils/api";
+import { getProducts, deleteProducts, editProduct } from "@/utils/api";
 import { queryClient } from "@/pages/_app";
 
 function ListProduct() {
@@ -11,6 +15,12 @@ function ListProduct() {
     queryKey: ["getProducts"],
     queryFn: getProducts,
   });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Product>({ resolver: zodResolver(productSchema) });
 
   const deleteProductMutation = useMutation({
     mutationFn: async function (id: string) {
@@ -36,6 +46,52 @@ function ListProduct() {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteProductMutation.mutate(id);
+      }
+    });
+  }
+
+  const editProductMutation = useMutation({
+    mutationFn: async function (data: Product) {
+      editProduct(data);
+    },
+    onSuccess: function () {
+      Swal.fire("Updated!", "Product has been updated", "success");
+      queryClient.invalidateQueries({ queryKey: ["getProducts"] }); // refresh data setelah update
+    },
+    onError: function () {
+      Swal.fire("Error", "Failed to update product", "error");
+    },
+  });
+
+  function handleEditProduct(data: Product) {
+    Swal.fire({
+      title: "Edit Product",
+      html: `
+      <input id="swal-input1" class="swal2-input w-full" value="${data.title}" placeholder="Product Name"></input>
+      <input id="swal-input2" class="swal2-input w-full" value="${data.description}" placeholder="Product Description"></input>
+      <input type='file' id="swal-input3" class="swal2-input w-full" value="${data.image}" placeholder="Product Image"></input>
+      <input id="swal-input4" class="swal2-input w-full" value="${data.price}" placeholder="Product Price"></input>
+      `,
+      showCancelButton: true,
+      confirmButtonText: "Update",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const updatedProduct: Product = {
+          id: data.id,
+          title: (document.getElementById("swal-input1") as HTMLInputElement)
+            ?.value,
+          description: (
+            document.getElementById("swal-input2") as HTMLInputElement
+          )?.value,
+          image: (document.getElementById("swal-input3") as HTMLInputElement)
+            ?.value,
+          price: Number(
+            (document.getElementById("swal-input4") as HTMLInputElement)?.value
+          ),
+        };
+
+        editProductMutation.mutate(updatedProduct);
       }
     });
   }
@@ -80,7 +136,10 @@ function ListProduct() {
                 <td className="py-3 px-6 text-left">{product.description}</td>
                 <td className="py-3 px-6 text-left">{product.price}</td>
                 <td className="py-3 px-6 text-center">
-                  <button className="mx-2 py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600">
+                  <button
+                    onClick={() => handleEditProduct(product)}
+                    className="mx-2 py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600"
+                  >
                     Edit
                   </button>
                   <button

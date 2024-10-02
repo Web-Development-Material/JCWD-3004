@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Swal from "sweetalert2";
 
-import { createProducts, Product } from "@/utils/api";
+import { getProductDetails, Product, editProduct } from "@/utils/api";
 import { productSchema } from "@/utils/validation/productSchema";
 
-function CreateProduct() {
+function EditProduct() {
   const {
     register,
     handleSubmit,
@@ -17,29 +18,16 @@ function CreateProduct() {
   const router = useRouter();
   const [image, setImage] = useState<string>("");
 
-  const createProductMutation = useMutation({
-    mutationFn: async function (data: Product) {
-      data = {
-        id: data.id,
-        title: data.title,
-        image: data.image,
-        description: data.description,
-        price: data.price,
-      };
-      createProducts(data);
-    },
-    onSuccess: function () {
-      Swal.fire("Success", "Product created succcessfully!", "success");
-      router.push("/admin/list-product");
-    },
-    onError: function () {
-      Swal.fire("Error", "Failed to create product!", "error");
-    },
+  //   Get the product information based on id
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getProductsDetails"],
+    queryFn: getProductDetails,
   });
+
+  console.log("data", data);
 
   function onImageChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
-    console.log(file?.name)
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -56,9 +44,7 @@ function CreateProduct() {
   return (
     <div className="w-screen bg-white h-full flex flex-col justify-center items-center">
       <div className="p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl text-black font-bold mb-6">
-          Create Product Form
-        </h2>
+        <h2 className="text-2xl text-black font-bold mb-6">Edit Product</h2>
         <form onSubmit={handleSubmit(handleFormSubmit)}>
           <div className="mb-4">
             {/* input title menggunakan rhf */}
@@ -124,4 +110,4 @@ function CreateProduct() {
   );
 }
 
-export default CreateProduct;
+export default EditProduct;
