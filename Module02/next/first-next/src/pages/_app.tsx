@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import axios from "axios";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 axios.defaults.baseURL = "https://66f65798436827ced976b37a.mockapi.io";
 
 export default function App({ Component, pageProps }: AppProps) {
