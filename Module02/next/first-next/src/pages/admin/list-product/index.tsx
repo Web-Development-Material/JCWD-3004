@@ -1,10 +1,12 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 
 import { getProducts, deleteProducts, Product } from "@/utils/api";
 import { queryClient } from "@/pages/_app";
 
 function ListProduct() {
+  const router = useRouter();
   const { data, error, isLoading } = useQuery({
     queryKey: ["getProducts"],
     queryFn: getProducts,
@@ -49,7 +51,10 @@ function ListProduct() {
     <div className="container mx-auto p-8 bg-white text-black">
       <h1 className="text-2xl font-bold mb-6">Product Table</h1>
       <div className="mb-4">
-        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+        <button
+          onClick={() => router.push({ pathname: "/admin/create-product" })}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
           Create New Product
         </button>
       </div>
