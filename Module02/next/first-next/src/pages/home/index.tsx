@@ -13,8 +13,6 @@ function Home() {
     queryFn: getProducts,
   });
 
-  console.log("product : ", data);
-
   return (
     <div className="w-screen h-full bg-white flex flex-col justify-center items-center">
       <nav className="space-x-5 px-10 fixed top-0 bg-orange-500 text-white font-bold w-full h-10 flex justify-between items-center">

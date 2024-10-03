@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { createProducts, Product } from "@/utils/api";
 import { productSchema } from "@/utils/validation/productSchema";
 
+import Header from "@/components/Header";
 import { getProducts, deleteProducts, editProduct } from "@/utils/api";
 import { queryClient } from "@/pages/_app";
 
@@ -104,57 +105,62 @@ function ListProduct() {
     );
 
   return (
-    <div className="container mx-auto p-8 bg-white text-black">
-      <h1 className="text-2xl font-bold mb-6">Product Table</h1>
-      <div className="mb-4">
-        <button
-          onClick={() => router.push({ pathname: "/admin/create-product" })}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Create New Product
-        </button>
+    <>
+      <Header>
+        <title>Admin - List Product</title>
+      </Header>
+      <div className="container mx-auto p-8 bg-white text-black">
+        <h1 className="text-2xl font-bold mb-6">Product Table</h1>
+        <div className="mb-4">
+          <button
+            onClick={() => router.push({ pathname: "/admin/create-product" })}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Create New Product
+          </button>
+        </div>
+        <table className="min-w-full bg-white border border-gray-200">
+          <thead>
+            <tr className="bg-orange-300 text-white">
+              <th className="py-3 px-6 text-left">Title</th>
+              <th className="py-3 px-6 text-left">Description</th>
+              <th className="py-3 px-6 text-left">Price</th>
+              <th className="py-3 px-6 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.map((product: Product, key: number) => {
+              return (
+                <tr
+                  key={key}
+                  className={`border-b border-gray-200 text-gray-700 ${
+                    key % 2 === 0 ? "bg-orange-100" : "bg-orange-200"
+                  }`}
+                >
+                  <td className="py-3 px-6 text-left">{product.title}</td>
+                  <td className="py-3 px-6 text-left">{product.description}</td>
+                  <td className="py-3 px-6 text-left">{product.price}</td>
+                  <td className="py-3 px-6 text-center">
+                    <button
+                      onClick={() => handleEditProduct(product)}
+                      className="mx-2 py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDeleteProduct(product.id)}
+                      className="mx-2 py-2 px-4 bg-red-500 text-white rounded-md hover:bg-red-600"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
-      <table className="min-w-full bg-white border border-gray-200">
-        <thead>
-          <tr className="bg-orange-300 text-white">
-            <th className="py-3 px-6 text-left">Title</th>
-            <th className="py-3 px-6 text-left">Description</th>
-            <th className="py-3 px-6 text-left">Price</th>
-            <th className="py-3 px-6 text-left">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map((product: Product, key: number) => {
-            return (
-              <tr
-                key={key}
-                className={`border-b border-gray-200 text-gray-700 ${
-                  key % 2 === 0 ? "bg-orange-100" : "bg-orange-200"
-                }`}
-              >
-                <td className="py-3 px-6 text-left">{product.title}</td>
-                <td className="py-3 px-6 text-left">{product.description}</td>
-                <td className="py-3 px-6 text-left">{product.price}</td>
-                <td className="py-3 px-6 text-center">
-                  <button
-                    onClick={() => handleEditProduct(product)}
-                    className="mx-2 py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDeleteProduct(product.id)}
-                    className="mx-2 py-2 px-4 bg-red-500 text-white rounded-md hover:bg-red-600"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+    </>
   );
 }
 
