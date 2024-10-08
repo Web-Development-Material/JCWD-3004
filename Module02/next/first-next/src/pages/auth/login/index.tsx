@@ -1,5 +1,9 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import { useRouter } from "next/router";
+
+import Cookies from "js-cookie";
+import { supabase } from "@/utils/supabase";
+import Swal from "sweetalert2";
 
 type LoginState = {
   username: string;
@@ -24,8 +28,26 @@ function Login() {
     });
   }
 
+  async function signInWithGoogle() {
+    const REDIRECT_URL = "/auth/callback";
+    const { error, data } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: REDIRECT_URL,
+      },
+    });
+    if (error) {
+      Swal.fire({
+        title: "Failed to login with Google",
+        text: "Please try again later",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  }
+
   return (
-    <div className="w-screen h-screen bg-white flex flex-col justify-center items-center">
+    <div className="w-screen h-full bg-white flex flex-col justify-center items-center">
       <h2 className="font-bold text-slate-600 my-5">Form Login</h2>
       <form
         onSubmit={onSubmit}
@@ -55,12 +77,25 @@ function Login() {
             })
           }
         />
-        <button
-          type="submit"
-          className="w-full h-10 rounded-md bg-slate-700 text-white font-semibold"
-        >
-          Login
-        </button>
+        <div className="flex flex-col space-y-5">
+          <button
+            type="submit"
+            className="w-full h-10 rounded-md bg-slate-700 text-white font-semibold"
+          >
+            Login
+          </button>
+          <button
+            onClick={signInWithGoogle}
+            type="button"
+            className="w-full bg-white h-10 rounded-md border bg-slate-700 text-black font-semibold flex justify-center items-center"
+          >
+            <img
+              className="h-full"
+              src="https://i.pinimg.com/564x/39/21/6d/39216d73519bca962bd4a01f3e8f4a4b.jpg"
+            />
+            Login with Google OAuth
+          </button>
+        </div>
       </form>
     </div>
   );
