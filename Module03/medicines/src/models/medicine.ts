@@ -1,12 +1,12 @@
 export interface Medicine {
   id: number;
   name: string;
-  type: string;
   description: string;
   price: number;
+  type: string;
 }
 
-export let medicine: Medicine[] = [
+export const medicine: Medicine[] = [
   {
     id: 1,
     name: "Paracetamol",
