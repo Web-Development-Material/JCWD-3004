@@ -13,5 +13,9 @@ router.get(
   "/employees/:id",
   employeeController.getEmployeeById.bind(employeeController)
 );
+router.post(
+  "/employees",
+  employeeController.createEmployee.bind(employeeController)
+);
 
 export default router;
