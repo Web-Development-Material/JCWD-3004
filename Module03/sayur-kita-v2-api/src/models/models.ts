@@ -12,3 +12,10 @@ export interface Discount {
   start_date: Date;
   end_date: Date;
 }
+
+export interface Auth {
+  email: string;
+  name: string;
+  password: string;
+  role: string;
+}

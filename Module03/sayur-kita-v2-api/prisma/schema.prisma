@@ -10,13 +10,15 @@ datasource db {
 }
 
 model Users {
-  user_id      Int            @id @default(autoincrement())
-  name         String
-  email        String         @unique
-  password     String
-  role         String
-  created_at   DateTime       @default(now())
-  transactions Transactions[]
+  user_id       Int            @id @default(autoincrement())
+  name          String
+  email         String         @unique
+  password      String
+  role          String
+  refresh_token String?
+  oauth_token   String?
+  created_at    DateTime       @default(now())
+  transactions  Transactions[]
 
   @@schema("sayurkita")
 }
