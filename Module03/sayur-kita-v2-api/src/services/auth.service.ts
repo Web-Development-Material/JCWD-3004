@@ -30,7 +30,7 @@ export class AuthService {
         email: email,
       },
     });
-
+    
     if (!user || !(await bcrypt.compare(password, user.password)) || "") {
       throw new Error("Invalid credentials");
     }
