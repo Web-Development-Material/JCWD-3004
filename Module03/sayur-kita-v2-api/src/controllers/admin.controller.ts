@@ -11,7 +11,12 @@ export class AdminController {
 
   async createProduct(req: Request, res: Response) {
     try {
-      const { name, price, description, stock, image, category } = req.body;
+      const { name, price, description, stock, category } = req.body;
+
+      // untuk mengambil image sebagai file
+      const image = (req as any).file?.path || "";
+
+      // rangkai body requestnya
       const product: Product = {
         name: name,
         price: Number(price),
@@ -20,7 +25,8 @@ export class AdminController {
         image: String(image),
         category: category,
       };
-      console.log("product pantex : ", product);
+
+      // masukin body request ke createProduct
       await this.adminService.createProduct(product);
       res.status(201).send({
         message: "Product created successfully",
