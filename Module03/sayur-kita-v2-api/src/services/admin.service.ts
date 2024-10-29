@@ -2,6 +2,8 @@ import { PrismaClient } from "@prisma/client";
 import { Product } from "../models/models";
 import { productSchema } from "../validators/product.validator";
 
+import cloudinary from "../cloudinary";
+
 export class AdminService {
   private prisma: PrismaClient;
 
@@ -22,13 +24,22 @@ export class AdminService {
   async createProduct(data: Product) {
     const validatedData = productSchema.parse(data);
 
+    // upload gambar ke cloudinary
+    const uploadResponse = await cloudinary.uploader.upload(
+      validatedData.image,
+      {
+        folder: "vegetables",
+      }
+    );
+
     return this.prisma.products.create({
       data: {
         name: validatedData.name,
-        price: validatedData.price,
-        stock: validatedData.stock,
+        price: Number(validatedData.price),
+        stock: Number(validatedData.stock),
         description: validatedData.description || "",
         category: validatedData.category,
+        image: uploadResponse.secure_url,
       },
     });
   }

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { AdminService } from "../services/admin.service";
+import { Product } from "../models/models";
 
 export class AdminController {
   private adminService: AdminService;
@@ -10,14 +11,30 @@ export class AdminController {
 
   async createProduct(req: Request, res: Response) {
     try {
-      await this.adminService.createProduct(req.body);
+      const { name, price, description, stock, image, category } = req.body;
+      const product: Product = {
+        name: name,
+        price: Number(price),
+        stock: Number(stock),
+        description: description,
+        image: String(image),
+        category: category,
+      };
+      console.log("product pantex : ", product);
+      await this.adminService.createProduct(product);
       res.status(201).send({
         message: "Product created successfully",
         status: res.statusCode,
       });
     } catch (error: any) {
+      if (error.code === "LIMIT_FILE_SIZE") {
+        res.status(400).send({
+          message: "File size exceeds 2 MB limit",
+        });
+      }
       res.status(400).send({
-        message: `Failed to create product : ${error.errors[0].message.toString()}`,
+        message: `Failed to create product`,
+        detail: error.errors,
         status: res.statusCode,
       });
     }

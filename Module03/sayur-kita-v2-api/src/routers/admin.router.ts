@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { AdminController } from "../controllers/admin.controller";
 import { AuthenticateJwtMiddleware } from "../middlewares/auth.middleware";
+import upload from "../middlewares/upload.middleware";
 
 const router = Router();
 const adminController = new AdminController();
@@ -10,6 +11,7 @@ router.post(
   "/products",
   authenticateJwt.authenticateJwt.bind(authenticateJwt),
   authenticateJwt.authorizeRole("admin").bind(authenticateJwt),
+  upload.single("image"),
   adminController.createProduct.bind(adminController)
 );
 router.get(

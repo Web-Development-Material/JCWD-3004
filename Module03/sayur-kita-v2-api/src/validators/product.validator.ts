@@ -6,4 +6,5 @@ export const productSchema = validate.object({
   stock: validate.number().positive("Stock must be positive"),
   description: validate.string().optional(),
   category: validate.string().min(1, "Category is required"),
+  image: validate.string().min(1, "URL is required"),
 });

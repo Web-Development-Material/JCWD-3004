@@ -31,6 +31,7 @@ model Products {
   price            Float
   discounted_price Float          @default(0.0)
   description      String
+  image            String?
   stock            Int
   created_at       DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
