@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { Auth } from "../models/models";
 import { PrismaClient } from "@prisma/client";
+import { authSchema } from "../validators/auth.validator";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
@@ -13,11 +14,12 @@ export class AuthService {
   }
 
   async register(data: Auth) {
-    const hashedPassword = await bcrypt.hash(data.password, 10);
+    const validatedData = authSchema.parse(data);
+    const hashedPassword = await bcrypt.hash(validatedData.password, 10);
     return this.prisma.users.create({
       data: {
         name: data.name,
-        email: data.email,
+        email: validatedData.email,
         password: hashedPassword,
         role: data.role,
       },
@@ -25,12 +27,15 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
+    const data = { email, password };
+    const validatedData = authSchema.parse(data);
+
     const user = await this.prisma.users.findUnique({
       where: {
-        email: email,
+        email: validatedData.email,
       },
     });
-    
+
     if (!user || !(await bcrypt.compare(password, user.password)) || "") {
       throw new Error("Invalid credentials");
     }

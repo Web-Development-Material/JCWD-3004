@@ -16,7 +16,8 @@ model Users {
   password      String
   role          String
   refresh_token String?
-  oauth_token   String?
+  access_token  String?
+  googleId      String?        @unique
   created_at    DateTime       @default(now())
   transactions  Transactions[]
 

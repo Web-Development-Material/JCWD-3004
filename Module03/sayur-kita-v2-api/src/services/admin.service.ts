@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Product } from "../models/models";
+import { productSchema } from "../validators/product.validator";
 
 export class AdminService {
   private prisma: PrismaClient;
@@ -19,8 +20,16 @@ export class AdminService {
   }
 
   async createProduct(data: Product) {
+    const validatedData = productSchema.parse(data);
+
     return this.prisma.products.create({
-      data,
+      data: {
+        name: validatedData.name,
+        price: validatedData.price,
+        stock: validatedData.stock,
+        description: validatedData.description || "",
+        category: validatedData.category,
+      },
     });
   }
 

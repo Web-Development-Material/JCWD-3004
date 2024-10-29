@@ -10,13 +10,13 @@ export class AuthController {
   }
 
   async login(req: Request, res: Response) {
-    const { email, password } = req.body;
-    const { accessToken, refreshToken, user } = await this.authService.login(
-      email,
-      password
-    );
-    const data = { accessToken, refreshToken, user };
-    if (data) {
+    try {
+      const { email, password } = req.body;
+      const { accessToken, refreshToken, user } = await this.authService.login(
+        email,
+        password
+      );
+      const data = { accessToken, refreshToken, user };
       res.status(200).send({
         data: {
           user: data.user,
@@ -26,25 +26,26 @@ export class AuthController {
         message: "Successfully login",
         status: res.statusCode,
       });
-    } else {
+    } catch (error: any) {
       res.status(404).send({
-        message: "Failed to login. User not found",
+        message: `Failed to login`,
+        detail: error.errors,
         status: res.statusCode,
       });
     }
   }
 
   async register(req: Request, res: Response) {
-    const user: Auth = req.body;
-    const data = await this.authService.register(user);
-    if (data) {
+    try {
+      const user: Auth = req.body;
+      await this.authService.register(user);
       res.status(201).send({
         message: "Successfully register",
         status: res.statusCode,
       });
-    } else {
+    } catch (error: any) {
       res.status(400).send({
-        message: "Failed to register. Please try again later",
+        message: `Failed to register : ${error.errors[0].message.toString()}`,
         status: res.statusCode,
       });
     }

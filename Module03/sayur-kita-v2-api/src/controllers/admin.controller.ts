@@ -9,15 +9,15 @@ export class AdminController {
   }
 
   async createProduct(req: Request, res: Response) {
-    const product = await this.adminService.createProduct(req.body);
-    if (product) {
+    try {
+      await this.adminService.createProduct(req.body);
       res.status(201).send({
         message: "Product created successfully",
         status: res.statusCode,
       });
-    } else {
+    } catch (error: any) {
       res.status(400).send({
-        message: "Failed to create product",
+        message: `Failed to create product : ${error.errors[0].message.toString()}`,
         status: res.statusCode,
       });
     }
