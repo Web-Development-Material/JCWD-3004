@@ -24,6 +24,7 @@ function Register() {
         password: credentials.password,
         role: "user",
       });
+      
       console.log(response);
       if (response) {
         Swal.fire({
