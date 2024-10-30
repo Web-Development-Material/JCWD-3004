@@ -1,17 +1,20 @@
 import { Request, Response } from "express";
 import { AdminService } from "../services/admin.service";
+import { EmailService } from "../services/email.service";
 import { Product } from "../models/models";
 
 export class AdminController {
   private adminService: AdminService;
+  private emailService: EmailService;
 
   constructor() {
     this.adminService = new AdminService();
+    this.emailService = new EmailService();
   }
 
   async createProduct(req: Request, res: Response) {
     try {
-      const { name, price, description, stock, category } = req.body;
+      const { name, price, description, stock, category, email } = req.body;
 
       // untuk mengambil image sebagai file
       const image = (req as any).file?.path || "";
@@ -28,6 +31,16 @@ export class AdminController {
 
       // masukin body request ke createProduct
       await this.adminService.createProduct(product);
+
+      console.log("email : ", email);
+
+      // setelah create product, kita kirim notifikasi ke email user
+      try {
+        await this.emailService.sendEmail(email, product);
+      } catch (error) {
+        console.log("ERROR : ", error);
+      }
+
       res.status(201).send({
         message: "Product created successfully",
         status: res.statusCode,

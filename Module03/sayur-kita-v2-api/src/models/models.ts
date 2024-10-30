@@ -20,3 +20,11 @@ export interface Auth {
   password: string;
   role: string;
 }
+
+export interface Email {
+  from: string | undefined;
+  to: string;
+  subject: string;
+  template: string;
+  context: any;
+}

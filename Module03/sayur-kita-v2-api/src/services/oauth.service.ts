@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import { supabase } from "../supabase";
+import { supabase } from "../config/supabase";
 import jwt from "jsonwebtoken";
 
 export class OAuthService {

@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { Product } from "../models/models";
 import { productSchema } from "../validators/product.validator";
 
-import cloudinary from "../cloudinary";
+import cloudinary from "../config/cloudinary";
 
 export class AdminService {
   private prisma: PrismaClient;
@@ -32,6 +32,7 @@ export class AdminService {
       }
     );
 
+    // membuat product di tabel products
     return this.prisma.products.create({
       data: {
         name: validatedData.name,
