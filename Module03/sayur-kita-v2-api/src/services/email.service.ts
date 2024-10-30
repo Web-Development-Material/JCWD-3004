@@ -1,4 +1,3 @@
-import transporter from "../config/nodemailer";
 import environment from "dotenv";
 import { Product } from "../models/models";
 import { Email } from "../models/models";
