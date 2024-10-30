@@ -15,7 +15,7 @@ const transporter: any = nodemailer.createTransport({
   secure: true,
 });
 
-const sendEmail = async (email: Email) => {
+async function sendMail(email: Email) {
   // Menggunakan path untuk mendapatkan lokasi template
   const templatePath = path.join(__dirname, "/views", `${email.template}.ejs`);
 
@@ -32,6 +32,6 @@ const sendEmail = async (email: Email) => {
 
   // Mengirim email
   return transporter.sendMail(mailOptions);
-};
+}
 
-export default sendEmail;
+export default sendMail;

@@ -32,8 +32,6 @@ export class AdminController {
       // masukin body request ke createProduct
       await this.adminService.createProduct(product);
 
-      console.log("email : ", email);
-
       // setelah create product, kita kirim notifikasi ke email user
       try {
         await this.emailService.sendEmail(email, product);
