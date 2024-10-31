@@ -30,11 +30,19 @@ export class AdminController {
       };
 
       // masukin body request ke createProduct
-      await this.adminService.createProduct(product);
+      const data = await this.adminService.createProduct(product);
 
       // setelah create product, kita kirim notifikasi ke email user
       try {
-        await this.emailService.sendEmail(email, product);
+        const bodyEmail: Product = {
+          name: data.name,
+          category: data.category,
+          price: data.price,
+          stock: data.stock,
+          image: String(data.image),
+          description: data.description,
+        };
+        await this.emailService.sendEmail(email, bodyEmail);
       } catch (error) {
         console.log("ERROR : ", error);
       }
