@@ -31,7 +31,7 @@ export class AdminService {
         folder: "vegetables",
       }
     );
-
+    
     // membuat product di tabel products
     return this.prisma.products.create({
       data: {

@@ -17,7 +17,10 @@ describe("AdminController", () => {
   beforeEach(() => {
     adminService = new AdminService() as jest.Mocked<AdminService>;
     emailService = new EmailService() as jest.Mocked<EmailService>;
+
     adminController = new AdminController();
+    adminController["adminService"] = adminService;
+    adminController["emailService"] = emailService;
 
     mockRequest = {};
     mockResponse = {
@@ -31,45 +34,175 @@ describe("AdminController", () => {
     jest.clearAllMocks();
   });
 
-  // 1. skenario pengujian untuk fitur create product
-  it("should create a product and send an email notification", async () => {
-    // data untuk testing create product
+  it("should create a product and send an email notification with a file image", async () => {
     const productData: any = {
-      product_id: 1,
       name: "Sample Product",
-      category: "Sample",
+      category: "Sayuran Hijau",
       price: 100,
-      discounted_price: 25,
-      description: "create for testing create product description",
-      image: "sample.jpg",
+      description: "Testing product description",
+      image: "uploads/sample.jpg",
       stock: 10,
-      created_at: Date.now(),
-      updatedAt: Date.now(),
     };
 
-    mockRequest.body = productData;
+    mockRequest.body = {
+      ...productData,
+      email: "bagas@example.com",
+    };
 
-    // menguji seberapa valid output yang dihasilkan dengan data testing
+    // Mock the file upload
+    mockRequest.file = {
+      path: "uploads/sample.jpg",
+      mimetype: "image/jpeg",
+      filename: "sample.jpg",
+    } as Express.Multer.File;
+
     adminService.createProduct.mockResolvedValue(productData);
     emailService.sendEmail.mockResolvedValue(true);
 
-    // untuk mengambil request dan response dari admin controller
     await adminController.createProduct(
       mockRequest as Request,
       mockResponse as Response
     );
 
-    // hasil yang diharapkan
+    expect(adminService.createProduct).toHaveBeenCalledWith({
+      ...productData,
+      image: "uploads/sample.jpg",
+    });
     expect(emailService.sendEmail).toHaveBeenCalledWith(
-      "bagasdhityataufiqqi21@gmail.com",
-      expect.any(Object)
+      "bagas@example.com",
+      productData
     );
     expect(mockResponse.status).toHaveBeenCalledWith(201);
-    expect(mockResponse.send).toHaveBeenCalledWith(
-      expect.objectContaining({
-        message: "Product created successfully",
-        status: 201,
-      })
+    expect(mockResponse.send).toHaveBeenCalledWith({
+      message: "Product created successfully",
+      status: 201,
+    });
+  });
+
+  it("should return all products", async () => {
+    const products: any = [
+      {
+        name: "Product A",
+        price: 50,
+        stock: 20,
+        category: "A",
+        image: "",
+        description: "",
+      },
+    ];
+
+    adminService.getProducts.mockResolvedValue(products);
+
+    await adminController.getProducts(
+      mockRequest as Request,
+      mockResponse as Response
     );
+
+    expect(mockResponse.status).toHaveBeenCalledWith(200);
+    expect(mockResponse.send).toHaveBeenCalledWith({
+      data: products,
+      status: 200,
+    });
+  });
+
+  it("should return a product by ID", async () => {
+    const product: any = {
+      name: "Product B",
+      price: 70,
+      stock: 15,
+      category: "B",
+      image: "",
+      description: "",
+    };
+
+    mockRequest.params = { id: "1" };
+    adminService.getProductById.mockResolvedValue(product);
+
+    await adminController.getProductById(
+      mockRequest as Request,
+      mockResponse as Response
+    );
+
+    expect(mockResponse.status).toHaveBeenCalledWith(201);
+    expect(mockResponse.send).toHaveBeenCalledWith({
+      message: `Product 1 was successfully retrieved`,
+      status: 201,
+      data: product,
+    });
+  });
+
+  it("should update a product", async () => {
+    const updatedProduct: any = {
+      name: "Updated Product",
+      price: 80,
+      stock: 10,
+      category: "A",
+      image: "",
+      description: "",
+    };
+
+    mockRequest.params = { id: "1" };
+    mockRequest.body = updatedProduct;
+    adminService.updateProduct.mockResolvedValue(updatedProduct);
+
+    await adminController.updateProduct(
+      mockRequest as Request,
+      mockResponse as Response
+    );
+
+    expect(mockResponse.status).toHaveBeenCalledWith(201);
+    expect(mockResponse.send).toHaveBeenCalledWith({
+      message: "Update product successfully",
+      status: 201,
+      data: updatedProduct,
+    });
+  });
+
+  it("should delete a product", async () => {
+    const deletedProduct: any = {
+      name: "Deleted Product",
+      price: 100,
+      stock: 0,
+      category: "A",
+      image: "",
+      description: "",
+    };
+
+    mockRequest.params = { id: "1" };
+    adminService.deleteProduct.mockResolvedValue(deletedProduct);
+
+    await adminController.deleteProduct(
+      mockRequest as Request,
+      mockResponse as Response
+    );
+
+    expect(mockResponse.status).toHaveBeenCalledWith(200);
+    expect(mockResponse.send).toHaveBeenCalledWith({
+      message: "Delete product successfully",
+      status: 200,
+      data: deletedProduct,
+    });
+  });
+
+  it("should apply a discount to a product", async () => {
+    mockRequest.body = { product_id: 1, discountPercentage: 10 };
+    adminService.applyDiscount.mockResolvedValue({
+      productId: 1,
+      discount_id: 123,
+      discount_percentage: 10,
+      start_date: new Date(),
+      end_date: new Date(),
+    });
+
+    await adminController.applyDiscount(
+      mockRequest as Request,
+      mockResponse as Response
+    );
+
+    expect(mockResponse.status).toHaveBeenCalledWith(201);
+    expect(mockResponse.send).toHaveBeenCalledWith({
+      message: "Discount applied successfully",
+      status: 201,
+    });
   });
 });

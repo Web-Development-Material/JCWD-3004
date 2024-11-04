@@ -31,7 +31,7 @@ export class AdminController {
 
       // masukin body request ke createProduct
       const data = await this.adminService.createProduct(product);
-      console.log("product : ", product);
+
       console.log("data : ", data);
 
       // setelah create product, kita kirim notifikasi ke email user
