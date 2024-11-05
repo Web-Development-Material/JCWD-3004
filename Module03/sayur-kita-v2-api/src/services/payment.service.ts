@@ -77,13 +77,12 @@ export class PaymentService {
     try {
       const response = await this.prisma.payments.create({
         data: {
-          payment_id: Number(transaction.transaction_id),
-          transaction_id: transaction.order_id,
+          payment_id_MT: transaction.transaction_id,
+          transactionId: Number(transaction.order_id),
           payment_type: transaction.payment_type,
           payment_status: transaction.transaction_status,
-          payment_amount: transaction.gross_amount,
-          payment_date: transaction.transaction_time,
-          transaction: transaction,
+          payment_amount: Number(transaction.gross_amount),
+          payment_date: new Date(transaction.transaction_time),
         },
       });
       return response;

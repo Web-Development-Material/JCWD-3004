@@ -58,13 +58,14 @@ model Transactions {
 
 model Payments {
   payment_id     Int      @id @default(autoincrement())
-  transaction_id Int      @unique
+  transactionId  Int      @unique
+  payment_id_MT  String
   payment_type   String
   payment_status String
   payment_amount Float
   payment_date   DateTime @default(now())
 
-  transaction Transactions @relation(fields: [transaction_id], references: [transaction_id])
+  transaction Transactions @relation(fields: [transactionId], references: [transaction_id])
 
   @@schema("sayurkita")
 }
