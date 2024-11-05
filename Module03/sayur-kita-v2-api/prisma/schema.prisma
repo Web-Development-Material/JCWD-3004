@@ -49,8 +49,22 @@ model Transactions {
   total_price      Float
   transaction_date DateTime @default(now())
 
-  user    Users    @relation(fields: [userId], references: [user_id])
-  product Products @relation(fields: [productId], references: [product_id])
+  user     Users     @relation(fields: [userId], references: [user_id])
+  product  Products  @relation(fields: [productId], references: [product_id])
+  Payments Payments?
+
+  @@schema("sayurkita")
+}
+
+model Payments {
+  payment_id     Int      @id @default(autoincrement())
+  transaction_id Int      @unique
+  payment_type   String
+  payment_status String
+  payment_amount Float
+  payment_date   DateTime @default(now())
+
+  transaction Transactions @relation(fields: [transaction_id], references: [transaction_id])
 
   @@schema("sayurkita")
 }

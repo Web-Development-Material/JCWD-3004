@@ -8,6 +8,7 @@ import authRouter from "./routers/auth.router";
 import messageRouter from "./routers/message.router";
 import schedulerRouter from "./routers/scheduler.router";
 import queueRouter from "./routers/queue.router";
+import paymentRouter from "./routers/payment.router";
 
 import { ErrorHandlerMiddleware } from "./middlewares/error.handler.middleware";
 
@@ -30,6 +31,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
 app.use("/api/options", schedulerRouter);
 app.use("/api/queue", queueRouter);
+app.use("/api/payments", paymentRouter);
 
 app.use(errorHandler.errorHandler());
 

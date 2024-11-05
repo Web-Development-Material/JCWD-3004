@@ -7,6 +7,38 @@ export interface Product {
   description: string;
 }
 
+export interface PaymentVA {
+  orderId: string;
+  gross_amount: number;
+  payment_type: string;
+  bank_transfer?: {
+    bank?: string;
+    permata?: {
+      recipient_name?: string;
+    };
+  };
+}
+
+export interface PaymentEWallet {
+  orderId: string;
+  gross_amount: number;
+  payment_type: string;
+  qris?: {
+    acquirer?: string;
+  };
+  item_details?: Product[];
+  customer_details?: {
+    first_name?: string;
+    last_name?: string;
+    email?: string;
+    phone?: string;
+  };
+  gopay?: {
+    enable_callback: boolean;
+    callback_url: string;
+  };
+}
+
 export interface Discount {
   productId: number;
   discount_percentage: number;
