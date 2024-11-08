@@ -39,6 +39,8 @@ export interface PaymentEWallet {
   };
 }
 
+export interface Transaction {}
+
 export interface Discount {
   productId: number;
   discount_percentage: number;

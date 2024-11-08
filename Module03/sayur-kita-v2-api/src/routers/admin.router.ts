@@ -2,15 +2,18 @@ import { Router } from "express";
 import { AdminController } from "../controllers/admin.controller";
 import { AuthenticateJwtMiddleware } from "../middlewares/auth.middleware";
 import upload from "../middlewares/upload.middleware";
+import { RateLimitMiddleware } from "../middlewares/rate-limit.middleware";
 
 const router = Router();
 const adminController = new AdminController();
 const authenticateJwt = new AuthenticateJwtMiddleware();
+const rateLimitMiddleware = new RateLimitMiddleware();
 
 router.post(
   "/products",
   authenticateJwt.authenticateJwt.bind(authenticateJwt),
   authenticateJwt.authorizeRole("admin").bind(authenticateJwt),
+  rateLimitMiddleware.rateLimit.bind(rateLimitMiddleware),
   upload.single("image"),
   adminController.createProduct.bind(adminController)
 );
