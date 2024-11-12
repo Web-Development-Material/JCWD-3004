@@ -1,6 +1,6 @@
-// Time Complexcity O(n) - Linear
+// Time Complexity O(n) - Linear
 // -- menghitung jumlah total dari sebuah harga barang
-// -- Space Complexcity O(1) karena tidak ada penambahan memori atau ruang
+// -- Space Complexity O(1) karena tidak ada penambahan memori atau ruang
 function calculateTotalPrice(prices) {
   let total = 0;
   for (let i = 0; i < prices.length; i++) {
@@ -14,9 +14,9 @@ let prices = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100];
 // console.log("Total Prices : ", calculateTotalPrice(prices));
 // console.timeEnd("time of execution calculateTotalPrice()");
 
-// Space Complexcity O(n)
+// Space Complexity O(n)
 // -- membuat array yang menyimpan angka ganjil dari 1 hingga N
-// -- Time Complexcity O(n) karena ada penambahan waktu ketika N dilooping
+// -- Time Complexity O(n) karena ada penambahan waktu ketika N dilooping
 function generateOddNumbers(n) {
   let oddNumbers = [];
   for (let i = 1; i <= n; i += 2) {
